@@ -31,7 +31,25 @@ Claude Desktop 설정 파일의 `mcpServers` 에:
 ```json
 "taxlaw": { "command": "npx", "args": ["-y", "github:ctahoon55/taxlaw-mcp"], "env": { "LAW_OC": "<법제처_인증키>" } }
 ```
-첫 실행 때만 내려받느라 몇 초 걸리고, 이후엔 캐시를 씁니다. 윈도우도 Node.js 만 설치돼 있으면 동일합니다.
+첫 실행 때만 내려받느라 몇 초 걸리고, 이후엔 캐시를 씁니다.
+
+**윈도우(PowerShell)는 두 가지가 다릅니다.**
+1. `npx` 앞에 `cmd /c` 를 붙여야 Claude Code 가 서버를 띄울 수 있습니다.
+2. `github:` 주소는 Git 이 설치돼 있어야 받아지므로, Git 이 없는 PC 는 아래처럼 압축 파일 주소를 씁니다.
+
+```powershell
+claude mcp add -s user taxlaw -e LAW_OC=<법제처_인증키> -- cmd /c npx -y https://github.com/ctahoon55/taxlaw-mcp/tarball/main
+```
+`<법제처_인증키>` 는 꺾쇠 없이 본인 키만 넣습니다 (PowerShell 은 `<` 를 그대로 두면 오류).
+
+### 제대로 됐는지 확인
+
+```bash
+claude mcp get taxlaw
+```
+`Status: ✔ Connected` 가 보이면 됩니다. 그 다음 Claude Code 안에서 `/mcp` 를 치면 taxlaw 에 도구 2개가 잡혀 있고,
+"국세청 예규에서 '접대비 한도' 검색해서 첫 번째 본문 보여줘" 라고 물으면 끝에 `출처: https://taxlaw.nts.go.kr/...` 줄이 붙은 답이 옵니다.
+`Failed to connect` 면 ① Node.js 설치 여부(`node -v`) ② 윈도우는 `cmd /c` 누락 ③ 인증키 꺾쇠 순으로 확인하세요.
 
 ### 방법 B — 코드를 받아서 (수정하며 쓸 때)
 
