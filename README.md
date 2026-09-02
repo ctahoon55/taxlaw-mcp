@@ -20,6 +20,21 @@
 
 ## 설치 (Node.js 20 이상)
 
+### 방법 A — 설치 없이 바로 (다른 PC 에 권장)
+
+Claude Code:
+```bash
+claude mcp add -s user taxlaw -e LAW_OC=<법제처_인증키> -- npx -y github:ctahoon55/taxlaw-mcp
+```
+
+Claude Desktop 설정 파일의 `mcpServers` 에:
+```json
+"taxlaw": { "command": "npx", "args": ["-y", "github:ctahoon55/taxlaw-mcp"], "env": { "LAW_OC": "<법제처_인증키>" } }
+```
+첫 실행 때만 내려받느라 몇 초 걸리고, 이후엔 캐시를 씁니다. 윈도우도 Node.js 만 설치돼 있으면 동일합니다.
+
+### 방법 B — 코드를 받아서 (수정하며 쓸 때)
+
 ```bash
 git clone https://github.com/ctahoon55/taxlaw-mcp.git && cd taxlaw-mcp && npm install --omit=dev
 ```
