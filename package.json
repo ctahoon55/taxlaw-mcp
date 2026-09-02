@@ -1,0 +1,27 @@
+{
+  "name": "taxlaw-mcp",
+  "version": "0.1.0",
+  "description": "국세법령정보시스템(taxlaw.nts.go.kr) 보완 MCP — 법제처 OPEN API가 본문을 주지 않는 국세청 예규 본문 조회",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "start": "node src/server.js",
+    "check:live": "node scripts/live-check.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "taxlaw-mcp": "./src/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ctahoon55/taxlaw-mcp.git"
+  },
+  "homepage": "https://github.com/ctahoon55/taxlaw-mcp#readme"
+}
